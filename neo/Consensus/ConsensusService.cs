@@ -300,7 +300,14 @@ namespace Neo.Consensus
                     context.State |= ConsensusState.RequestSent;
                     if (!context.State.HasFlag(ConsensusState.SignatureSent))
                     {
-                        context.Timestamp = Math.Max(DateTime.Now.ToTimestamp(), Blockchain.Default.GetHeader(context.PrevHash).Timestamp + 1);
+                        if (Blockchain.Default.GetHeader(context.PrevHash) == null)
+                        {
+                            context.Timestamp = DateTime.Now.ToTimestamp();
+                        }
+                        else
+                        {
+                            context.Timestamp = Math.Max(DateTime.Now.ToTimestamp(), Blockchain.Default.GetHeader(context.PrevHash).Timestamp + 1);
+                        }
                         context.Nonce = GetNonce();
                         List<Transaction> transactions = LocalNode.GetMemoryPool().Where(p => CheckPolicy(p)).ToList();
                         if (transactions.Count >= MaxTransactionsPerBlock)

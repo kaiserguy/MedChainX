@@ -37,8 +37,8 @@ namespace Neo.Core
         public static readonly RegisterTransaction GoverningToken = new RegisterTransaction
         {
             AssetType = AssetType.GoverningToken,
-            Name = "[{\"lang\":\"zh-CN\",\"name\":\"小蚁股\"},{\"lang\":\"en\",\"name\":\"AntShare\"}]",
-            Amount = Fixed8.FromDecimal(100000000),
+            Name = "[{\"lang\":\"zh-CN\",\"name\":\"小蚁股\"},{\"lang\":\"en\",\"name\":\"MedShare\"}]",
+            Amount = Fixed8.FromDecimal(63000000),
             Precision = 0,
             Owner = ECCurve.Secp256r1.Infinity,
             Admin = (new[] { (byte)OpCode.PUSHT }).ToScriptHash(),
@@ -51,7 +51,7 @@ namespace Neo.Core
         public static readonly RegisterTransaction UtilityToken = new RegisterTransaction
         {
             AssetType = AssetType.UtilityToken,
-            Name = "[{\"lang\":\"zh-CN\",\"name\":\"小蚁币\"},{\"lang\":\"en\",\"name\":\"AntCoin\"}]",
+            Name = "[{\"lang\":\"zh-CN\",\"name\":\"小蚁币\"},{\"lang\":\"en\",\"name\":\"MedToken\"}]",
             Amount = Fixed8.FromDecimal(GenerationAmount.Sum(p => p) * DecrementInterval),
             Precision = 8,
             Owner = ECCurve.Secp256r1.Infinity,
